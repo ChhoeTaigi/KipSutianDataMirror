@@ -19,6 +19,12 @@ The audio files are organized into two main directories:
 * **Structure:** `{folder}/{filename}`
 * **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/leku/0/1-1-1.mp3`
 
+### 3. Text Data (`siannim`)
+
+* [**kautian.csv** (Dictionary Data CSV)](./siannim/kautian.csv)
+* [**kautian.json** (Dictionary Data JSON)](./siannim/kautian.json)
+* [**kautian.ods** (Original Data Source)](./siannim/kautian.ods)
+
 ## Source
 
 Original data source: <https://sutian.moe.edu.tw/>
