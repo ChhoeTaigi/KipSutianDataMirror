@@ -1,12 +1,23 @@
 
 # Data Mirror for ChhoeTaigi KipSutian
 
-This site provides direct download links for the KipSutian audio data. The large files are hosted via GitHub Releases to ensure reliability and speed.
+This site provides direct access to the extracted KipSutian audio data. The files are hosted on GitHub Pages for easy access.
 
-## Download Links
+## Accessing Files
 
-* [**sutiau-mp3.zip** (Entries Audio MP3)](https://github.com/ChhoeTaigi/KipSutianDataMirror/releases/download/v1.0.0/sutiau-mp3.zip)
-* [**leku-mp3.zip** (Example Sentences Audio MP3)](https://github.com/ChhoeTaigi/KipSutianDataMirror/releases/download/v1.0.0/leku-mp3.zip)
+The audio files are organized into two main directories:
+
+### 1. Entries Audio (`sutiau/`)
+
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/sutiau/`
+* **Structure:** `{folder}/{filename}`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/sutiau/0/1(1).mp3`
+
+### 2. Example Sentences Audio (`leku/`)
+
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/leku/`
+* **Structure:** `{folder}/{filename}`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/leku/0/1-1-1.mp3`
 
 ## Source
 
