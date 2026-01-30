@@ -7,23 +7,23 @@ This site provides direct access to the extracted KipSutian audio data. The file
 
 The audio files are organized into two main directories:
 
-### 1. Entries Audio (`sutiau/`)
+### 1. Entries Audio (`imtong/sutiau/`)
 
-* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/sutiau/`
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/imtong/sutiau/`
 * **Structure:** `{folder}/{filename}`
-* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/sutiau/0/1(1).mp3`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/imtong/sutiau/0/1(1).mp3`
 
-### 2. Example Sentences Audio (`leku/`)
+### 2. Example Sentences Audio (`imtong/leku/`)
 
-* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/leku/`
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/imtong/leku/`
 * **Structure:** `{folder}/{filename}`
-* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/leku/0/1-1-1.mp3`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/imtong/leku/0/1-1-1.mp3`
 
-### 3. Text Data (`siannim`)
+### 3. Text Data (`bunji/`)
 
-* [**kautian.csv** (Dictionary Data CSV)](./siannim/kautian.csv)
-* [**kautian.json** (Dictionary Data JSON)](./siannim/kautian.json)
-* [**kautian.ods** (Original Data Source)](./siannim/kautian.ods)
+* [**kautian.csv** (Dictionary Data CSV)](./bunji/kautian.csv)
+* [**kautian.json** (Dictionary Data JSON)](./bunji/kautian.json)
+* [**kautian.ods** (Original Data Source)](./bunji/kautian.ods)
 
 ## Source
 
