@@ -64,19 +64,33 @@ def calculate_file_hash(filepath):
             sha256_hash.update(byte_block)
     return sha256_hash.hexdigest()
 
-def extract_zip(zip_path, extract_to):
-    """Extracts a zip file to the target directory."""
-    print(f"Extracting {zip_path} to {extract_to}...")
+def extract_zip_flat(zip_path, extract_to):
+    """Extracts all files from a zip to the target directory, ignoring internal folder structure."""
+    print(f"Extracting {zip_path} to {extract_to} (flattened)...")
     try:
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            members = zip_ref.namelist()
+            members = zip_ref.infolist()
             total_files = len(members)
+            extracted_count = 0
             for i, member in enumerate(members):
-                zip_ref.extract(member, extract_to)
-                if i % 100 == 0:
-                     sys.stdout.write(f"\rExtracting: {i}/{total_files} files")
+                if member.is_dir():
+                    continue
+                
+                # Get just the filename, ignoring the path in the zip
+                filename = os.path.basename(member.filename)
+                if not filename:
+                    continue
+                    
+                target_path = os.path.join(extract_to, filename)
+                
+                with zip_ref.open(member) as source, open(target_path, "wb") as target:
+                    shutil.copyfileobj(source, target)
+                
+                extracted_count += 1
+                if extracted_count % 100 == 0:
+                     sys.stdout.write(f"\rExtracting: {extracted_count} files")
                      sys.stdout.flush()
-            print(f"\rExtracted {total_files} files.")
+            print(f"\rExtracted {extracted_count} files.")
     except Exception as e:
         print(f"Error extracting {zip_path}: {e}")
         return False
@@ -133,69 +147,83 @@ def main():
                     changes_detected = True
                     break
         
+        target_dir = None
+        
         if not changes_detected:
-            print("No changes detected in any files. All hashes match manifest.")
-            print("Clean up and exit.")
-            shutil.rmtree(temp_dir)
-            return
+            print("No changes detected in any files.")
+            latest_version_dir_name = current_manifest.get("latest_version_dir")
+            if latest_version_dir_name:
+                target_dir = PUBLIC_DIR / latest_version_dir_name
+                if target_dir.exists():
+                     print(f"Using existing latest directory: {target_dir}")
+                else:
+                    print(f"Existing directory {latest_version_dir_name} not found. Forcing creation of new one.")
+                    changes_detected = True
+            else:
+                print("Latest version directory not defined in manifest. Forcing creation of new one.")
+                changes_detected = True
 
-        print("Proceeding with update...")
-        
-        # 4. Create Timestamp Directory
-        target_dir = get_timestamp_dir()
+        if changes_detected:
+            print("Proceeding with update/creation of new folder...")
+            
+            # 4. Create Timestamp Directory
+            target_dir = get_timestamp_dir()
+            imtong_dir = target_dir / "imtong"
+            tangloo_dir = target_dir / "tangloo"
+            
+            imtong_dir.mkdir(parents=True, exist_ok=True)
+            tangloo_dir.mkdir(parents=True, exist_ok=True)
+            print(f"Created version directory: {target_dir}")
+
+            # 5. Move/Process Files
+            
+            # ODS
+            temp_ods = temp_dir / "kautian.ods"
+            tangloo_ods = tangloo_dir / "kautian.ods"
+            shutil.move(temp_ods, tangloo_ods)
+            
+            # Sutiau Zip
+            temp_sutiau = temp_dir / "sutiau-mp3.zip"
+            tangloo_sutiau = tangloo_dir / "sutiau-mp3.zip"
+            shutil.move(temp_sutiau, tangloo_sutiau)
+            
+            sutiau_target_dir = imtong_dir / "sutiau"
+            sutiau_target_dir.mkdir(exist_ok=True)
+            extract_zip_flat(tangloo_sutiau, sutiau_target_dir)
+            
+            # Leku Zip
+            temp_leku = temp_dir / "leku-mp3.zip"
+            tangloo_leku = tangloo_dir / "leku-mp3.zip"
+            shutil.move(temp_leku, tangloo_leku)
+
+            leku_target_dir = imtong_dir / "leku"
+            leku_target_dir.mkdir(exist_ok=True)
+            extract_zip_flat(tangloo_leku, leku_target_dir)
+                
+            # 6. Update Manifest
+            new_manifest = {
+                "last_updated": datetime.datetime.now().isoformat(),
+                "latest_version_dir": str(target_dir.name),
+                "files": downloaded_hashes
+            }
+            save_manifest(new_manifest)
+            print("Updated manifest.json.")
+
+        # Always run ODS conversion (Bunji)
+        tangloo_ods = target_dir / "tangloo" / "kautian.ods"
+        if not tangloo_ods.exists():
+             print(f"Error: ODS file not found at {tangloo_ods}")
+             return
+
         bunji_dir = target_dir / "bunji"
-        imtong_dir = target_dir / "imtong"
-        
         bunji_dir.mkdir(parents=True, exist_ok=True)
-        imtong_dir.mkdir(parents=True, exist_ok=True)
-        print(f"Created version directory: {target_dir}")
 
-        # 5. Move/Process Files
-        
-        # ODS
-        temp_ods = temp_dir / "kautian.ods"
-        target_ods = bunji_dir / "kautian.ods"
-        shutil.move(temp_ods, target_ods)
-        
-        # Convert ODS
-        print("Converting ODS to CSV/JSON...")
+        print(f"Converting ODS to CSV/JSON in {bunji_dir}...")
         csv_path = bunji_dir / "kautian.csv"
         json_path = bunji_dir / "kautian.json"
-        convert_kautian(str(target_ods), str(csv_path), str(json_path))
-
-        # Sutiau Zip
-        temp_sutiau = temp_dir / "sutiau-mp3.zip"
-        sutiau_target_dir = imtong_dir / "sutiau"
-        sutiau_target_dir.mkdir(exist_ok=True)
-        if extract_zip(temp_sutiau, sutiau_target_dir):
-            os.remove(temp_sutiau)
         
-        # Leku Zip
-        temp_leku = temp_dir / "leku-mp3.zip"
-        leku_target_dir = imtong_dir / "leku"
-        leku_target_dir.mkdir(exist_ok=True)
-        if extract_zip(temp_leku, leku_target_dir):
-            os.remove(temp_leku)
-            
-        # 6. Update Manifest
-        new_manifest = {
-            "last_updated": datetime.datetime.now().isoformat(),
-            "latest_version_dir": str(target_dir.name),
-            "files": downloaded_hashes
-        }
-        save_manifest(new_manifest)
-        print("Updated manifest.json.")
-
-        # 7. Update Current Reference (public/bunji)
-        print("Updating current reference files in public/bunji/...")
-        current_bunji_dir = PUBLIC_DIR / "bunji"
-        current_bunji_dir.mkdir(exist_ok=True)
-        
-        for filename in ["kautian.ods", "kautian.csv", "kautian.json"]:
-            src = bunji_dir / filename
-            dst = current_bunji_dir / filename
-            if src.exists():
-                shutil.copy2(src, dst)
+        # We need to make sure convert_kautian is imported and functional
+        convert_kautian(str(tangloo_ods), str(csv_path), str(json_path))
         
     finally:
         if temp_dir.exists():

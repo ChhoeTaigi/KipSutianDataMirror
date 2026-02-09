@@ -4,32 +4,32 @@ This site provides direct access to the extracted KipSutian audio data. The file
 
 ## Latest Version
 
-* **Version ID:** `20260201-0448`
-* **Last Updated:** 2026-02-01
+* **Version ID:** `20260202-0346`
+* **Last Updated:** 2026-02-02
 
 You can check [**manifest.json**](./public/manifest.json) for the latest version information programmatically.
 
 ## Accessing Files
 
-The files are organized by version. The latest files are in `public/20260201-0448/`.
+The files are organized by version. The latest files are in `public/20260202-0346/`.
 
 ### 1. Entries Audio (`imtong/sutiau/`)
 
-* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260201-0448/imtong/sutiau/`
-* **Structure:** `{folder}/{filename}`
-* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260201-0448/imtong/sutiau/0/1(1).mp3`
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260202-0346/imtong/sutiau/`
+* **Structure:** `{filename}`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260202-0346/imtong/sutiau/1(1).mp3`
 
 ### 2. Example Sentences Audio (`imtong/leku/`)
 
-* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260201-0448/imtong/leku/`
-* **Structure:** `{folder}/{filename}`
-* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260201-0448/imtong/leku/0/1-1-1.mp3`
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260202-0346/imtong/leku/`
+* **Structure:** `{filename}`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260202-0346/imtong/leku/1-1-1.mp3`
 
-### 3. Text Data (`bunji/`)
+### 3. Text Data (Dictionary & ODS)
 
-* [**kautian.csv** (Dictionary Data CSV)](./public/20260201-0448/bunji/kautian.csv)
-* [**kautian.json** (Dictionary Data JSON)](./public/20260201-0448/bunji/kautian.json)
-* [**kautian.ods** (Original Data Source)](./public/20260201-0448/bunji/kautian.ods)
+* [**kautian.csv** (Dictionary Data CSV)](./public/20260202-0346/bunji/kautian.csv)
+* [**kautian.json** (Dictionary Data JSON)](./public/20260202-0346/bunji/kautian.json)
+* [**kautian.ods** (Original Data Source)](./public/20260202-0346/tangloo/kautian.ods)
 
 ## Source
 
