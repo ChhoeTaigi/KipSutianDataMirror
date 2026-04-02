@@ -50,6 +50,10 @@ public/
 - `.nojekyll` disables Jekyll processing
 - Audio files are served directly from `public/{version}/imtong/`
 
+## Important Rules
+
+- **`README.md` and `index.md` must stay in sync.** They have identical content. When updating version references or any other content in one, always update the other to match.
+
 ## Terminology (Taiwanese Hokkien)
 
 - **bunji** (文字) — text data
