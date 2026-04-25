@@ -12,32 +12,32 @@ Data mirror for ChhoeTaigi KipSutian. This site provides direct access to the ex
 
 ## Latest Version
 
-* **Version ID:** `20260403-0609`
-* **Last Updated:** 2026-04-03
+* **Version ID:** `20260425-0849`
+* **Last Updated:** 2026-04-25
 
 You can check [**manifest.json**](./public/manifest.json) for the latest version information programmatically.
 
 ## Accessing Files
 
-The files are organized by version. The latest files are in `public/20260403-0609/`.
+The files are organized by version. The latest files are in `public/20260425-0849/`.
 
 ### 1. Entries Audio (`imtong/sutiau/`)
 
-* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260403-0609/imtong/sutiau/`
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260425-0849/imtong/sutiau/`
 * **Structure:** `{filename}`
-* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260403-0609/imtong/sutiau/1(1).mp3`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260425-0849/imtong/sutiau/1(1).mp3`
 
 ### 2. Example Sentences Audio (`imtong/leku/`)
 
-* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260403-0609/imtong/leku/`
+* **Base URL:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260425-0849/imtong/leku/`
 * **Structure:** `{filename}`
-* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260403-0609/imtong/leku/1-1-1.mp3`
+* **Example:** `https://chhoetaigi.github.io/KipSutianDataMirror/public/20260425-0849/imtong/leku/1-1-1.mp3`
 
 ### 3. Text Data (Dictionary & ODS)
 
-* [**kautian.csv** (Dictionary Data CSV)](./public/20260403-0609/bunji/kautian.csv)
-* [**kautian.json** (Dictionary Data JSON)](./public/20260403-0609/bunji/kautian.json)
-* [**kautian.ods** (Original Data Source)](./public/20260403-0609/tangloo/kautian.ods)
+* [**kautian.csv** (Dictionary Data CSV)](./public/20260425-0849/bunji/kautian.csv)
+* [**kautian.json** (Dictionary Data JSON)](./public/20260425-0849/bunji/kautian.json)
+* [**kautian.ods** (Original Data Source)](./public/20260425-0849/tangloo/kautian.ods)
 
 ## Chu-liāu bāng-chí
 
