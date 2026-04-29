@@ -8,7 +8,7 @@ Data mirror for ChhoeTaigi KipSutian. This site provides direct access to the ex
 - https://sutian.moe.edu.tw/zh-hant/piantsip/pankhuan-singbing/
 - [創用CC姓名標示-禁止改作 3.0 臺灣 授權條款](https://creativecommons.org/licenses/by-nd/3.0/tw/)
 
-<img width="1920" height="1461" alt="版權聲明-教育部臺灣台語常用詞辭典 - sutian moe edu tw" src="https://github.com/user-attachments/assets/bf1652e7-c869-45ba-8909-f645409297f8" />
+![版權聲明](./LICENSE.png)
 
 ## Latest Version
 
