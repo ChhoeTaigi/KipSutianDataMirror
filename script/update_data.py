@@ -10,11 +10,11 @@ import sys
 from pathlib import Path
 
 try:
-    from convert_kautian import convert_kautian
+    from convert_KipSutianData import convert_KipSutianData
 except ImportError:
     # If standard import fails (e.g. running from root), try appending the script dir
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    from convert_kautian import convert_kautian
+    from convert_KipSutianData import convert_KipSutianData
 
 # Constants
 URL_ODS = "https://sutian.moe.edu.tw/media/senn/ods/kautian.ods"
@@ -114,7 +114,7 @@ def main():
     temp_dir.mkdir(parents=True, exist_ok=True)
     
     files_to_check = {
-        "kautian.ods": URL_ODS,
+        "KipSutianData.ods": URL_ODS,
         "sutiau-mp3.zip": URL_SUTIAU_ZIP,
         "leku-mp3.zip": URL_LEKU_ZIP
     }
@@ -178,8 +178,8 @@ def main():
             # 5. Move/Process Files
             
             # ODS
-            temp_ods = temp_dir / "kautian.ods"
-            tangloo_ods = tangloo_dir / "kautian.ods"
+            temp_ods = temp_dir / "KipSutianData.ods"
+            tangloo_ods = tangloo_dir / "KipSutianData.ods"
             shutil.move(temp_ods, tangloo_ods)
             
             # Sutiau Zip
@@ -210,7 +210,7 @@ def main():
             print("Updated manifest.json.")
 
         # Always run ODS conversion (Bunji)
-        tangloo_ods = target_dir / "tangloo" / "kautian.ods"
+        tangloo_ods = target_dir / "tangloo" / "KipSutianData.ods"
         if not tangloo_ods.exists():
              print(f"Error: ODS file not found at {tangloo_ods}")
              return
@@ -219,11 +219,11 @@ def main():
         bunji_dir.mkdir(parents=True, exist_ok=True)
 
         print(f"Converting ODS to CSV/JSON in {bunji_dir}...")
-        csv_path = bunji_dir / "kautian.csv"
-        json_path = bunji_dir / "kautian.json"
+        csv_path = bunji_dir / "KipSutianData.csv"
+        json_path = bunji_dir / "KipSutianData.json"
         
-        # We need to make sure convert_kautian is imported and functional
-        convert_kautian(str(tangloo_ods), str(csv_path), str(json_path))
+        # We need to make sure convert_KipSutianData is imported and functional
+        convert_KipSutianData(str(tangloo_ods), str(csv_path), str(json_path))
         
     finally:
         if temp_dir.exists():

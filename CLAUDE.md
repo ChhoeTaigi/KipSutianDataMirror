@@ -18,7 +18,7 @@ source .venv/bin/activate
 cd script && python update_data.py
 
 # Run only the ODS → CSV/JSON conversion
-cd script && python convert_kautian.py
+cd script && python convert_KipSutianData.py
 ```
 
 Dependencies: `requests`, `pandas`, `odfpy`. Install with `pip install requests pandas odfpy`.
@@ -27,9 +27,9 @@ Dependencies: `requests`, `pandas`, `odfpy`. Install with `pip install requests 
 
 ### Data Pipeline (`script/`)
 
-1. **`update_data.py`** — Main entry point. Downloads three files from sutian.moe.edu.tw (kautian.ods, sutiau-mp3.zip, leku-mp3.zip), compares SHA256 hashes against `public/manifest.json` to detect changes, creates a timestamped version directory under `public/`, extracts MP3s flat (no subdirectories), then calls `convert_kautian()`.
+1. **`update_data.py`** — Main entry point. Downloads three files from sutian.moe.edu.tw (KipSutianData.ods, sutiau-mp3.zip, leku-mp3.zip), compares SHA256 hashes against `public/manifest.json` to detect changes, creates a timestamped version directory under `public/`, extracts MP3s flat (no subdirectories), then calls `convert_KipSutianData()`.
 
-2. **`convert_kautian.py`** — Converts the ODS spreadsheet into hierarchical JSON and flat CSV. The ODS has ~15 sheets representing a relational structure: main entity `詞目` (entries) → `義項` (definitions) → `例句` (example sentences), plus many relation sheets (synonyms, antonyms, variant readings, etc.). The converter builds a tree (entries containing definitions containing sentences and relations), outputs that as JSON, then flattens it to one-row-per-entry CSV with aggregated numbered fields.
+2. **`convert_KipSutianData.py`** — Converts the ODS spreadsheet into hierarchical JSON and flat CSV. The ODS has ~15 sheets representing a relational structure: main entity `詞目` (entries) → `義項` (definitions) → `例句` (example sentences), plus many relation sheets (synonyms, antonyms, variant readings, etc.). The converter builds a tree (entries containing definitions containing sentences and relations), outputs that as JSON, then flattens it to one-row-per-entry CSV with aggregated numbered fields.
 
 ### Data Layout (`public/`)
 
@@ -61,4 +61,4 @@ public/
 - **tangloo** (檔路) — file storage / archives
 - **sutiau** (詞條) — dictionary entries
 - **leku** (例句) — example sentences
-- **kautian** (教典) — abbreviation for the dictionary
+- **KipSutianData** (教育部辭典資料) — dictionary data

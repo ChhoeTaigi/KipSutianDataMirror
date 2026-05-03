@@ -12,9 +12,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 DATA_DIR = os.path.join(PROJECT_ROOT, 'public')
 
-INPUT_FILE = os.path.join(DATA_DIR, 'kautian.ods')
-CSV_OUTPUT = os.path.join(DATA_DIR, 'kautian.csv')
-JSON_OUTPUT = os.path.join(DATA_DIR, 'kautian.json')
+INPUT_FILE = os.path.join(DATA_DIR, 'KipSutianData.ods')
+CSV_OUTPUT = os.path.join(DATA_DIR, 'KipSutianData.csv')
+JSON_OUTPUT = os.path.join(DATA_DIR, 'KipSutianData.json')
 
 def load_sheet(excel_file, sheet_name):
     """Helper to load a sheet, returning empty DataFrame if not found or error."""
@@ -30,7 +30,7 @@ def load_sheet(excel_file, sheet_name):
         return pd.DataFrame()
 
 
-def convert_kautian(input_file=INPUT_FILE, csv_output=CSV_OUTPUT, json_output=JSON_OUTPUT):
+def convert_KipSutianData(input_file=INPUT_FILE, csv_output=CSV_OUTPUT, json_output=JSON_OUTPUT):
     print(f"Reading {input_file}...")
     try:
         xl = pd.ExcelFile(input_file, engine='odf')
@@ -446,4 +446,4 @@ def convert_kautian(input_file=INPUT_FILE, csv_output=CSV_OUTPUT, json_output=JS
     print("Conversion complete!")
 
 if __name__ == "__main__":
-    convert_kautian()
+    convert_KipSutianData()

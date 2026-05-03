@@ -35,14 +35,14 @@ The files are organized by version. The latest files are in `public/20260425-084
 
 ### 3. Text Data (Dictionary & ODS)
 
-* [**kautian.csv** (Dictionary Data CSV)](./public/20260425-0849/bunji/kautian.csv)
-* [**kautian.json** (Dictionary Data JSON)](./public/20260425-0849/bunji/kautian.json)
-* [**kautian.ods** (Original Data Source)](./public/20260425-0849/tangloo/kautian.ods)
+* [**KipSutianData.csv** (Dictionary Data CSV)](./public/20260425-0849/bunji/KipSutianData.csv)
+* [**KipSutianData.json** (Dictionary Data JSON)](./public/20260425-0849/bunji/KipSutianData.json)
+* [**KipSutianData.ods** (Original Data Source)](./public/20260425-0849/tangloo/KipSutianData.ods)
 
 ## Chu-liāu bāng-chí
 
 辭典資料下載
-1. [辭典文字資料下載（kautian.ods）](https://sutian.moe.edu.tw/media/senn/ods/kautian.ods)
+1. [辭典文字資料下載（KipSutianData.ods）](https://sutian.moe.edu.tw/media/senn/ods/kautian.ods)
 2. [詞條音檔wav下載（sutiau-wav.zip）](https://sutian.moe.edu.tw/media/senn/sutiau-wav.zip)
 3. [詞條音檔mp3下載（sutiau-mp3.zip）](https://sutian.moe.edu.tw/media/senn/sutiau-mp3.zip)
 4. [例句音檔wav下載（leku-wav.zip）](https://sutian.moe.edu.tw/media/senn/leku-wav.zip)
