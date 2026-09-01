@@ -11,10 +11,12 @@ from pathlib import Path
 
 try:
     from convert_KipSutianData import convert_KipSutianData
+    from diff_versions import diff_versions, write_diff_md
 except ImportError:
     # If standard import fails (e.g. running from root), try appending the script dir
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from convert_KipSutianData import convert_KipSutianData
+    from diff_versions import diff_versions, write_diff_md
 
 # Constants
 URL_ODS = "https://sutian.moe.edu.tw/media/senn/ods/kautian.ods"
@@ -222,9 +224,19 @@ def main():
         csv_path = bunji_dir / "KipSutianData.csv"
         json_path = bunji_dir / "KipSutianData.json"
         
-        # We need to make sure convert_KipSutianData is imported and functional
         convert_KipSutianData(str(tangloo_ods), str(csv_path), str(json_path))
-        
+
+        # Compare against previous version if one exists
+        prev_version = current_manifest.get("latest_version_dir")
+        if prev_version and prev_version != target_dir.name:
+            prev_json = PUBLIC_DIR / prev_version / "bunji" / "KipSutianData.json"
+            new_json = json_path
+            if prev_json.exists() and new_json.exists():
+                print(f"Comparing {prev_version} → {target_dir.name}...")
+                diff = diff_versions(str(prev_json), str(new_json))
+                diff_md_path = BASE_DIR / "VERSION_DIFF.md"
+                write_diff_md(diff, prev_version, target_dir.name, str(diff_md_path))
+
     finally:
         if temp_dir.exists():
             shutil.rmtree(temp_dir)
